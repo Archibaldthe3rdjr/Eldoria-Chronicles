@@ -18,7 +18,7 @@ From the burning roads of Greyhaven to the drowned ruins beyond the Sea of Glass
 
 ## Campaign
 
-The game is structured as a five-act campaign:
+The expanded campaign is built around five acts:
 
 1. **Ashes of Greyhaven** — flee the Crown and uncover the first lie surrounding the Shattering.
 2. **The Green That Remains** — enter the dying Root-City and discover that the forest remembers history differently.
@@ -26,7 +26,7 @@ The game is structured as a five-act campaign:
 4. **The Sea of Glass** — explore the wound left by the Shattering and discover the original prophecy.
 5. **The Shattered Crown** — face Malachar, the Regent, the five Shards, and the truth behind the Sixth.
 
-The expanded narrative content lives in `eldoria_story.py`, keeping story data separate from combat and save-state logic.
+The long-form narrative lives in `eldoria_story.py`, while `extended_campaign.py` provides a lightweight playable entry point for the expanded story. The original `eldoria_chronicles.py` remains the full combat-focused edition.
 
 ## Character Classes
 
@@ -61,7 +61,7 @@ There are **8 playable classes**, each with a different combat identity and lore
 
 ## Endings
 
-The campaign now supports five major outcomes:
+The campaign supports five major narrative outcomes:
 
 - **The Warrior's Crown** — defeat the threat through strength and claim responsibility for what follows.
 - **The Price of Mercy** — refuse the easy answer of revenge and give Malachar a chance to finish what he started.
@@ -69,27 +69,36 @@ The campaign now supports five major outcomes:
 - **The Shattered World** — destroy the Shards and end the cycle of magical power.
 - **The Sixth Shard** — uncover the hidden memory behind the prophecy and reject the roles written for you.
 
-A darker outcome is also possible if the player's reputation collapses far enough.
+A darker reputation-driven outcome remains possible in the original combat campaign.
 
 ## How to Play
+
+### Full combat edition
 
 ```bash
 python3 eldoria_chronicles.py
 ```
 
-The game requires Python 3 and the Python standard library only.
+### Expanded story edition
+
+```bash
+python3 extended_campaign.py
+```
+
+The extended edition is intentionally data-driven: the story can grow substantially without turning the combat engine into one giant wall of dialogue.
 
 ## Development
 
-The stability branch focuses on fixing state-related bugs while expanding the campaign without introducing third-party dependencies.
+The project uses only the Python standard library.
 
 Before merging, run:
 
 ```bash
-python3 -m py_compile eldoria_chronicles.py eldoria_story.py
+python3 -m py_compile eldoria_chronicles.py eldoria_story.py extended_campaign.py
+python3 extended_campaign.py
 python3 eldoria_chronicles.py
 ```
 
-The first command catches syntax errors without starting the game. The second is a manual gameplay check for saves, combat, progression, story flow, and endings.
+`py_compile` catches syntax errors without starting the game. The two launch commands provide manual checks for narrative flow, combat, progression, saves, and endings.
 
 *The prophecy tells you what you are supposed to become. The game lets you decide whether it is telling the truth.*
